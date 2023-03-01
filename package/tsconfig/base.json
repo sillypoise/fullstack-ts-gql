@@ -9,7 +9,8 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noUncheckedIndexedAccess": true,
-        "useUnknownInCatchVariables": true
+        "useUnknownInCatchVariables": true,
+        "isolatedModules": true
     },
     "exclude": ["**/node_modules"]
 }
