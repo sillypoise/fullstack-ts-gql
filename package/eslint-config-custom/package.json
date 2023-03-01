@@ -1,13 +1,13 @@
 {
     "name": "eslint-config-custom",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "description": "",
     "main": "index.js",
     "keywords": [],
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "dependencies": {
-        "@remix-run/eslint-config": "latest",
+        "@remix-run/eslint-config": "^1.13.0",
         "eslint-config-prettier": "^8.6.0",
         "eslint-config-turbo": "latest"
     },
