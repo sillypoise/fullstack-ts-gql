@@ -1,0 +1,17 @@
+{
+    "name": "eslint-config-custom",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@remix-run/eslint-config": "latest",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-config-turbo": "latest"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
