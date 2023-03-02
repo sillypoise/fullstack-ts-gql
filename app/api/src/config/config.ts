@@ -28,6 +28,7 @@ const stage = getStage(
     [process.env.NODE_ENV, process.env.APP_ENV].filter(notEmpty).filter(isStage)
 );
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function envToBool(value: string | undefined) {
     if (!value) {
         return false;
@@ -36,6 +37,7 @@ function envToBool(value: string | undefined) {
     return ["true", "TRUE", "1"].includes(value);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function envToStr(value: string | undefined, defaultValue = "") {
     return value === undefined ? defaultValue : value;
 }

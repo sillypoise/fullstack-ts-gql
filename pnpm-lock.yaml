@@ -17,6 +17,7 @@ importers:
   app/api:
     specifiers:
       '@remix-run/eslint-config': ^1.13.0
+      '@types/cors': ^2.8.13
       '@types/express': ^4.17.17
       '@types/morgan': ^1.9.4
       '@types/node': ^18.14.2
@@ -46,6 +47,7 @@ importers:
       zod: 3.20.6
     devDependencies:
       '@remix-run/eslint-config': 1.13.0_ezujzymwn6i6oisrjb2haixety
+      '@types/cors': 2.8.13
       '@types/express': 4.17.17
       '@types/morgan': 1.9.4
       '@types/node': 18.14.2
@@ -939,6 +941,12 @@ packages:
 
   /@types/cookiejar/2.1.2:
     resolution: {integrity: sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog==}
+    dev: true
+
+  /@types/cors/2.8.13:
+    resolution: {integrity: sha512-RG8AStHlUiV5ysZQKq97copd2UmVYw3/pRMLefISZ3S1hK104Cwm7iLQ3fTKx+lsUH2CE8FlLaYeEA2LSeqYUA==}
+    dependencies:
+      '@types/node': 18.14.2
     dev: true
 
   /@types/express-serve-static-core/4.17.33:
