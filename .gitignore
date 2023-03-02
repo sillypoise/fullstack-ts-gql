@@ -13,6 +13,15 @@ coverage
 out/
 build
 
+# dist
+dist
+/**/dist
+
+# logs
+logs
+*.log
+/**/logs
+
 # misc
 .DS_Store
 *.pem
