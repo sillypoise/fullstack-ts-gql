@@ -1,17 +1,23 @@
+import path from "path";
 import express from "express";
-import { createSchema, createYoga } from "graphql-yoga";
+import { createYoga } from "graphql-yoga";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { DateTimeResolver } from "graphql-scalars";
+import { loadFilesSync } from "@graphql-tools/load-files";
+import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
+import { ping_resolver } from "../../resolvers/ping.resolver";
+import { user_resolver } from "../../resolvers/user.resolver";
 
-let schema = createSchema({
-    typeDefs: `
-        type Query {
-            hello: String
-        }
-    `,
-    resolvers: {
-        Query: {
-            hello: () => "Hello World!",
-        },
-    },
+let types_array = loadFilesSync(
+    path.join(__dirname, "../src/schema/**/*.graphql")
+);
+
+let typeDefs = mergeTypeDefs(types_array);
+let resolvers = mergeResolvers([ping_resolver, user_resolver]);
+
+let schema = makeExecutableSchema({
+    typeDefs,
+    resolvers,
 });
 
 let yoga = createYoga({ schema });
