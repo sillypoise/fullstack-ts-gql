@@ -1,11 +1,10 @@
 {
     "$schema": "http://json.schemastore.org/nodemon",
     "verbose": true,
-    "ignore": ["src"],
     "execMap": {
         "js": "node"
     },
-    "watch": ["dist", "build.*.mjs", "*.graphql"],
+    "watch": ["dist", "build.*.mjs", "modules/**/typedefs/*.graphql"],
     "ext": "ts,js,json,html",
     "env": {
         "NODE_ENV": "development"

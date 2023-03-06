@@ -7,9 +7,11 @@
         "build:prod": "node build.mjs",
         "build:dev": "node build.dev.mjs",
         "dev:esb": "pnpm build:dev",
+        "dev:codegen": "pnpm generate:codegen --watch",
         "dev:server": "nodemon",
         "dev": "run-p dev:*",
-        "clean": "rimraf dist"
+        "clean": "rimraf dist",
+        "generate:codegen": "graphql-codegen --config codegen.ts"
     },
     "keywords": [],
     "author": "Jose Rosas <sillypoise@gmail.com> (https://sillypoise.io)",
@@ -31,6 +33,10 @@
         "zod": "^3.20.6"
     },
     "devDependencies": {
+        "@graphql-codegen/cli": "^3.2.1",
+        "@graphql-codegen/graphql-modules-preset": "^3.1.0",
+        "@graphql-codegen/typescript": "^3.0.1",
+        "@graphql-codegen/typescript-resolvers": "^3.1.0",
         "@remix-run/eslint-config": "^1.13.0",
         "@types/express": "^4.17.17",
         "@types/morgan": "^1.9.4",

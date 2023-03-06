@@ -5,12 +5,15 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { DateTimeResolver } from "graphql-scalars";
 import { loadFilesSync } from "@graphql-tools/load-files";
 import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
-import { ping_resolver } from "../../resolvers/ping.resolver";
-import { user_resolver } from "../../resolvers/user.resolver";
+import { ping_resolver } from "../../modules/health/resolvers";
+import { user_resolver } from "../../modules/user/resolvers";
+import { logger } from "../../lib/logger";
 
 let types_array = loadFilesSync(
-    path.join(__dirname, "../src/schema/**/*.graphql")
+    path.join(__dirname, "../src/modules/**/typedefs/*.graphql")
 );
+
+logger.debug("o%", types_array);
 
 let typeDefs = mergeTypeDefs(types_array);
 let resolvers = mergeResolvers([ping_resolver, user_resolver]);
