@@ -3,7 +3,7 @@ import * as gm from "graphql-modules";
 export namespace UserModule {
   interface DefinedFields {
     Query: 'user';
-    User: 'id' | 'full_name' | 'is_admin';
+    User: 'id' | 'username' | 'email' | 'password' | 'created_at' | 'updated_at' | 'is_admin';
   };
   
   export type Query = Pick<Types.Query, DefinedFields['Query']>;
@@ -28,7 +28,11 @@ export namespace UserModule {
     User?: {
       '*'?: gm.Middleware[];
       id?: gm.Middleware[];
-      full_name?: gm.Middleware[];
+      username?: gm.Middleware[];
+      email?: gm.Middleware[];
+      password?: gm.Middleware[];
+      created_at?: gm.Middleware[];
+      updated_at?: gm.Middleware[];
       is_admin?: gm.Middleware[];
     };
   };

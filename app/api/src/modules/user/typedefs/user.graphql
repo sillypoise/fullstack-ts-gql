@@ -4,6 +4,10 @@ extend type Query {
 
 type User {
     id: ID!
-    full_name: String!
+    username: String!
+    email: String!
+    password: String!
+    created_at: String!
+    updated_at: String!
     is_admin: Boolean!
 }

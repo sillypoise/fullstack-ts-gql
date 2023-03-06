@@ -1,0 +1,15 @@
+extend type Query {
+    recipe(id: ID!): Recipe
+}
+
+type Recipe {
+    id: ID!
+    title: String!
+    description: String!
+    instructions: [String!]!
+    ingredients: [String!]!
+    image_url: String
+    author: User!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
