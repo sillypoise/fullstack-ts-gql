@@ -11,7 +11,9 @@
         "dev:server": "nodemon",
         "dev": "run-p dev:*",
         "clean": "rimraf dist",
-        "generate:codegen": "graphql-codegen --config codegen.ts"
+        "generate:codegen": "graphql-codegen --config codegen.ts",
+        "test": "vitest --run",
+        "test:watch": "vitest"
     },
     "keywords": [],
     "author": "Jose Rosas <sillypoise@gmail.com> (https://sillypoise.io)",
@@ -29,6 +31,7 @@
         "graphql-scalars": "^1.20.1",
         "graphql-yoga": "^3.7.0",
         "morgan": "^1.10.0",
+        "pg-promise": "^11.3.0",
         "winston": "^3.8.2",
         "zod": "^3.20.6"
     },

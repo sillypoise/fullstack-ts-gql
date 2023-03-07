@@ -56,17 +56,17 @@ let configSchema = z.object({
     }),
     // ci: z{},
     // api: z{},
-    // database: z.object({
-    //     postgres: z.object({
-    //         user: z.string(),
-    //         password: z.string(),
-    //         db: z.string(),
-    //         host: z.string(),
-    //         uri: z.string(),
-    //         port: z.number(),
-    //         // shouldMigrate: Boolean
-    //     }),
-    // }),
+    database: z.object({
+        postgres: z.object({
+            user: z.string(),
+            password: z.string(),
+            db: z.string(),
+            host: z.string(),
+            uri: z.string(),
+            port: z.number(),
+            // shouldMigrate: Boolean
+        }),
+    }),
     // services: z.object({
     // }),
     // sentry,
@@ -80,17 +80,17 @@ export let config = configSchema.parse({
     server: {
         port: envToNumber(process.env.PORT, 8000),
     },
-    // database: {
-    // postgres: {
-    //     user: envToStr(process.env.POSTGRES_USER),
-    //     password: envToStr(process.env.POSTGRES_PASSWORD),
-    //     db: envToStr(process.env.POSTGRES_DB),
-    //     host: envToStr(process.env.POSTGRES_HOST),
-    //     uri: envToStr(process.env.POSTGRES_URI),
-    //     port: envToNumber(process.env.POSTGRES_PORT, 5432),
-    //     // shouldMigrate: envToBool(process.env.SHOULD_MIGRATE),
-    // },
-    // },
+    database: {
+        postgres: {
+            user: envToStr(process.env.POSTGRES_USER),
+            password: envToStr(process.env.POSTGRES_PASSWORD),
+            db: envToStr(process.env.POSTGRES_DB),
+            host: envToStr(process.env.POSTGRES_HOST),
+            uri: envToStr(process.env.POSTGRES_URI),
+            port: envToNumber(process.env.POSTGRES_PORT, 5432),
+            // shouldMigrate: envToBool(process.env.SHOULD_MIGRATE),
+        },
+    },
     // services: {
     // },
 });
