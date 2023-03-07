@@ -14,11 +14,4 @@ api.use("/health", (_req: Request, res: Response) => {
 
 api.use("/graphql", gql_route);
 
-api.use("/test", async (_req: Request, res: Response) => {
-    let result = await getRecipeById("1");
-    logger.debug("res", result);
-
-    return res.status(204).send("OK");
-});
-
 export { api };

@@ -1,18 +1,22 @@
 import { z } from "zod";
+import { logger } from "../../lib/logger";
 import type { User, Resolvers } from "../../types/types";
+import { getUserById } from "./model";
 
 async function user(
-    _parent: any,
+    parent: any,
     args: { id: string },
     _ctx: any,
     _info: any
 ): Promise<User | void> {
     let id = z.string().parse(args.id);
-    let user: User = {
-        id: id,
-        username: "mr.example",
-    };
-    return user;
+    try {
+        let user = await getUserById(id);
+        logger.debug("%o", parent);
+        return user;
+    } catch (error) {
+        logger.error("%o", error);
+    }
 }
 
 async function users(
@@ -24,7 +28,7 @@ async function users(
     return [];
 }
 
-let user_resolver: Resolvers = {
+let user_resolver = {
     Query: {
         user,
     },

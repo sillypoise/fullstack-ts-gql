@@ -4,7 +4,6 @@ import { logger } from "./logger";
 import type { IConnectionParameters } from "pg-promise/typescript/pg-subset";
 
 let pg_config = config.database.postgres;
-logger.debug("pg_config", pg_config);
 
 let pgp = pg_promise();
 let cn: IConnectionParameters = {

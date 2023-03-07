@@ -1,4 +1,9 @@
 import { z } from "zod";
+import dotenv from "dotenv";
+import { logger } from "../lib/logger";
+
+dotenv.config();
+
 const stages = ["production", "development"] as const;
 
 type Stage = (typeof stages)[number];

@@ -1,45 +1,29 @@
 import { z } from "zod";
+import { logger } from "../../lib/logger";
 import type { Recipe, Resolvers } from "../../types/types";
+import { user_resolver } from "../user/resolvers";
+import { getRecipeById } from "./model";
 
 async function recipe(
-    _parent: any,
+    parent: any,
     args: { id: string },
-    _ctx: any,
-    _info: any
+    ctx: any,
+    info: any
 ): Promise<Recipe | void> {
     let id = z.string().parse(args.id);
-    let recipe: Recipe = {
-        id: id,
-        title: "Banana Pancakes",
-        description: "A delicious breakfast recipe",
-        instructions: [
-            "Mash the bananas",
-            "Mix the bananas with the eggs",
-            "Cook the pancakes",
-        ],
-
-        ingredients: [
-            "2 bananas",
-            "2 eggs",
-            "1 cup of flour",
-            "1/2 cup of milk",
-            "1/2 cup of water",
-            "1/2 teaspoon of baking soda",
-            "1/2 teaspoon of baking powder",
-            "1/2 teaspoon of salt",
-            "1 teaspoon of vanilla extract",
-            "1 tablespoon of sugar",
-            "1 tablespoon of butter",
-        ],
-        image_url: "https://example.com/image.png",
-        author: {
-            id: "1",
-            username: "mr.example",
-        },
-        created_at: new Date(),
-        updated_at: new Date(),
-    };
-    return recipe;
+    try {
+        let recipe = await getRecipeById(id);
+        recipe.author = await user_resolver.Query.user(
+            null,
+            { id: recipe.author_id.toString() },
+            ctx,
+            info
+        );
+        console.log(recipe);
+        return recipe;
+    } catch (error) {
+        logger.error("%o", error);
+    }
 }
 
 async function recipes(
@@ -51,7 +35,7 @@ async function recipes(
     return [];
 }
 
-let recipe_resolver: Resolvers = {
+let recipe_resolver = {
     Query: {
         recipe,
         recipes,
