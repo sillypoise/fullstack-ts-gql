@@ -4,8 +4,8 @@
     "description": "",
     "main": "dist/server.js",
     "scripts": {
-        "build:prod": "node build.mjs",
-        "build:dev": "node build.dev.mjs",
+        "build:prod": "swc src -d dist",
+        "build:dev": "swc src -d dist --watch",
         "dev:esb": "pnpm build:dev",
         "dev:codegen": "pnpm generate:codegen --watch",
         "dev:server": "nodemon",
@@ -25,7 +25,6 @@
         "@graphql-tools/schema": "^9.0.16",
         "cors": "^2.8.5",
         "dotenv": "^16.0.3",
-        "esbuild": "^0.17.10",
         "express": "^4.18.2",
         "graphql": "^16.6.0",
         "graphql-scalars": "^1.20.1",

@@ -10,7 +10,7 @@ import { user_resolver } from "../../modules/user/resolvers";
 import { recipe_resolver } from "../../modules/recipe/resolvers";
 
 let types_array = loadFilesSync(
-    path.join(__dirname, "../src/modules/**/typedefs/*.graphql")
+    path.join(__dirname, "../../../src/modules/**/typedefs/*.graphql")
 );
 
 let typeDefs = mergeTypeDefs(types_array, DateTimeTypeDefinition);

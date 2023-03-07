@@ -1,15 +1,14 @@
 import { z } from "zod";
-import { logger } from "../../lib/logger";
-import type { RecipeModule } from "./generated-types/module-types";
+import type { Recipe, Resolvers } from "../../types/types";
 
 async function recipe(
     _parent: any,
     args: { id: string },
     _ctx: any,
     _info: any
-): Promise<RecipeModule.Recipe | void> {
+): Promise<Recipe | void> {
     let id = z.string().parse(args.id);
-    let recipe: RecipeModule.Recipe = {
+    let recipe: Recipe = {
         id: id,
         title: "Banana Pancakes",
         description: "A delicious breakfast recipe",
@@ -48,11 +47,11 @@ async function recipes(
     _args: any,
     _ctx: any,
     _info: any
-): Promise<Array<RecipeModule.Recipe> | void> {
+): Promise<Array<Recipe> | void> {
     return [];
 }
 
-let recipe_resolver: RecipeModule.Resolvers = {
+let recipe_resolver: Resolvers = {
     Query: {
         recipe,
         recipes,

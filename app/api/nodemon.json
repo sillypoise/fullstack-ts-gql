@@ -4,7 +4,7 @@
     "execMap": {
         "js": "node"
     },
-    "watch": ["dist", "build.*.mjs", "modules/**/typedefs/*.graphql"],
+    "watch": ["dist", "modules/**/typedefs/*.graphql"],
     "ext": "ts,js,json,html",
     "env": {
         "NODE_ENV": "development"

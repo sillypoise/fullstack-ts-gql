@@ -180,5 +180,3 @@ export type Resolvers<ContextType = any> = {
   User?: UserResolvers<ContextType>;
 };
 
-
-export type DateTime = Scalars["DateTime"];
