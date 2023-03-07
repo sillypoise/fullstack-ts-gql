@@ -19,7 +19,9 @@ export type Query = {
   __typename?: 'Query';
   ping: Scalars['String'];
   recipe?: Maybe<Recipe>;
+  recipes: Array<Maybe<Recipe>>;
   user?: Maybe<User>;
+  users: Array<Maybe<User>>;
 };
 
 
@@ -47,12 +49,7 @@ export type Recipe = {
 
 export type User = {
   __typename?: 'User';
-  created_at: Scalars['String'];
-  email: Scalars['String'];
   id: Scalars['ID'];
-  is_admin: Scalars['Boolean'];
-  password: Scalars['String'];
-  updated_at: Scalars['String'];
   username: Scalars['String'];
 };
 
@@ -152,7 +149,9 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   ping?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   recipe?: Resolver<Maybe<ResolversTypes['Recipe']>, ParentType, ContextType, RequireFields<QueryRecipeArgs, 'id'>>;
+  recipes?: Resolver<Array<Maybe<ResolversTypes['Recipe']>>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
+  users?: Resolver<Array<Maybe<ResolversTypes['User']>>, ParentType, ContextType>;
 };
 
 export type RecipeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Recipe'] = ResolversParentTypes['Recipe']> = {
@@ -169,12 +168,7 @@ export type RecipeResolvers<ContextType = any, ParentType extends ResolversParen
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  is_admin?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

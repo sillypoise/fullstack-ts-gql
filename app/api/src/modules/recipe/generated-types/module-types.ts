@@ -2,7 +2,7 @@ import * as Types from "../../generated-types/generated-types/graphql";
 import * as gm from "graphql-modules";
 export namespace RecipeModule {
   interface DefinedFields {
-    Query: 'recipe';
+    Query: 'recipe' | 'recipes';
     Recipe: 'id' | 'title' | 'description' | 'instructions' | 'ingredients' | 'image_url' | 'author' | 'created_at' | 'updated_at';
   };
   
@@ -26,6 +26,7 @@ export namespace RecipeModule {
     Query?: {
       '*'?: gm.Middleware[];
       recipe?: gm.Middleware[];
+      recipes?: gm.Middleware[];
     };
     Recipe?: {
       '*'?: gm.Middleware[];

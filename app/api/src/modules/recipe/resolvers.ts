@@ -2,7 +2,12 @@ import { z } from "zod";
 import { logger } from "../../lib/logger";
 import type { RecipeModule } from "./generated-types/module-types";
 
-async function recipe(_parent: any, args: { id: string }, ctx: any, info: any) {
+async function recipe(
+    _parent: any,
+    args: { id: string },
+    _ctx: any,
+    _info: any
+): Promise<RecipeModule.Recipe | void> {
     let id = z.string().parse(args.id);
     let recipe: RecipeModule.Recipe = {
         id: id,
@@ -30,12 +35,7 @@ async function recipe(_parent: any, args: { id: string }, ctx: any, info: any) {
         image_url: "https://example.com/image.png",
         author: {
             id: "1",
-            email: "user@example.com",
-            password: "password",
             username: "mr.example",
-            is_admin: false,
-            created_at: new Date(),
-            updated_at: new Date(),
         },
         created_at: new Date(),
         updated_at: new Date(),
@@ -43,9 +43,19 @@ async function recipe(_parent: any, args: { id: string }, ctx: any, info: any) {
     return recipe;
 }
 
+async function recipes(
+    _parent: any,
+    _args: any,
+    _ctx: any,
+    _info: any
+): Promise<Array<RecipeModule.Recipe> | void> {
+    return [];
+}
+
 let recipe_resolver: RecipeModule.Resolvers = {
     Query: {
         recipe,
+        recipes,
     },
 };
 

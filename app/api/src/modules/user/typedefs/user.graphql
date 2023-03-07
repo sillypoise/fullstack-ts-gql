@@ -1,13 +1,9 @@
 extend type Query {
     user(id: ID!): User
+    users: [User]!
 }
 
 type User {
     id: ID!
     username: String!
-    email: String!
-    password: String!
-    created_at: String!
-    updated_at: String!
-    is_admin: Boolean!
 }

@@ -10,14 +10,18 @@ async function user(
     let id = z.string().parse(args.id);
     let user: UserModule.User = {
         id: id,
-        email: "user@example.com",
-        password: "password",
         username: "mr.example",
-        is_admin: false,
-        created_at: new Date(),
-        updated_at: new Date(),
     };
     return user;
+}
+
+async function users(
+    _parent: any,
+    _args: any,
+    _ctx: any,
+    _info: any
+): Promise<UserModule.User[]> {
+    return [];
 }
 
 let user_resolver = {

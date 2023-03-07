@@ -2,8 +2,8 @@ import * as Types from "../../generated-types/generated-types/graphql";
 import * as gm from "graphql-modules";
 export namespace UserModule {
   interface DefinedFields {
-    Query: 'user';
-    User: 'id' | 'username' | 'email' | 'password' | 'created_at' | 'updated_at' | 'is_admin';
+    Query: 'user' | 'users';
+    User: 'id' | 'username';
   };
   
   export type Query = Pick<Types.Query, DefinedFields['Query']>;
@@ -24,16 +24,12 @@ export namespace UserModule {
     Query?: {
       '*'?: gm.Middleware[];
       user?: gm.Middleware[];
+      users?: gm.Middleware[];
     };
     User?: {
       '*'?: gm.Middleware[];
       id?: gm.Middleware[];
       username?: gm.Middleware[];
-      email?: gm.Middleware[];
-      password?: gm.Middleware[];
-      created_at?: gm.Middleware[];
-      updated_at?: gm.Middleware[];
-      is_admin?: gm.Middleware[];
     };
   };
 }
