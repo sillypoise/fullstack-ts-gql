@@ -1,0 +1,17 @@
+/* ### DEBUG ### */
+
+.debug {
+    outline: var(--border-width-1) solid;
+    outline-offset: var(--debug-spacing, var(--space-2xs));
+    outline-color: var(--debug-color, var(--neutral-on-surface-0));
+}
+.debug-r {
+    outline: var(--border-width-3) solid;
+    outline-offset: var(--space-2xs);
+    outline-color: var(--debug-color, var(--neutral-on-surface-0));
+}
+.debug-r * {
+    outline: var(--border-width-2) solid;
+    outline-offset: var(--space-3xs);
+    outline-color: var(--debug-color, var(--neutral-on-surface-0));
+}
