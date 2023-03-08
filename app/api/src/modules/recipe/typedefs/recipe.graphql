@@ -3,6 +3,17 @@ extend type Query {
     recipes(limit: Int, offset: Int): [Recipe]!
 }
 
+extend type Mutation {
+    addRecipe(
+        title: String!
+        description: String!
+        instructions: [String!]!
+        ingredients: [String!]!
+        image_url: String
+        author: ID!
+    ): Recipe!
+}
+
 type Recipe {
     id: ID!
     title: String!

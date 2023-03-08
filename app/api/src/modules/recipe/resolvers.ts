@@ -1,12 +1,13 @@
 import { z } from "zod";
 import { logger } from "../../lib/logger";
 import type {
+    MutationAddRecipeArgs,
     QueryRecipeArgs,
     QueryRecipesArgs,
     Recipe,
 } from "../../types/types";
 import { user_resolver } from "../user/resolvers";
-import { getRecipeById, getRecipes } from "./model";
+import { createRecipe, getRecipeById, getRecipes } from "./model";
 
 async function recipe(
     _parent: any,
@@ -23,7 +24,6 @@ async function recipe(
             ctx,
             info
         );
-        console.log(recipe);
         return recipe;
     } catch (error) {
         logger.error("%o", error);
@@ -33,8 +33,8 @@ async function recipe(
 async function recipes(
     _parent: any,
     args: QueryRecipesArgs,
-    _ctx: any,
-    _info: any
+    ctx: any,
+    info: any
 ): Promise<Array<Recipe> | void> {
     try {
         let limit: QueryRecipesArgs["limit"];
@@ -59,8 +59,8 @@ async function recipes(
                 user_resolver.Query.user(
                     null,
                     { id: recipe.author_id.toString() },
-                    _ctx,
-                    _info
+                    ctx,
+                    info
                 )
             )
         );
@@ -68,9 +68,41 @@ async function recipes(
             recipe.author = authors[index];
             return recipe;
         });
-
-        logger.debug("%o", recipes);
         return recipes;
+    } catch (error) {
+        logger.error("%o", error);
+    }
+}
+
+async function addRecipe(
+    _parent: any,
+    args: MutationAddRecipeArgs,
+    ctx: any,
+    info: any
+): Promise<Array<Recipe> | void> {
+    try {
+        let { title, description, ingredients, instructions, author } = args;
+        let image_url =
+            args.image_url ||
+            "https://unsplash.com/photos/iNwCO9ycBlc/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8Zm9vZCUyMHJlY2lwZXxlbnwwfHx8fDE2NzgyOTMwNzI&force=true&w=1920";
+
+        let recipe = await createRecipe({
+            title,
+            description,
+            ingredients,
+            instructions,
+            author,
+            image_url,
+        });
+        recipe.author = await user_resolver.Query.user(
+            null,
+            { id: recipe.author_id.toString() },
+            ctx,
+            info
+        );
+        logger.debug("%o", recipe);
+
+        return recipe;
     } catch (error) {
         logger.error("%o", error);
     }
@@ -80,6 +112,9 @@ let recipe_resolver = {
     Query: {
         recipe,
         recipes,
+    },
+    Mutation: {
+        addRecipe,
     },
 };
 
