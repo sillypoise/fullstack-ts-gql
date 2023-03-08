@@ -1,6 +1,6 @@
 extend type Query {
     recipe(id: ID!): Recipe
-    recipes: [Recipe]!
+    recipes(limit: Int, offset: Int): [Recipe]!
 }
 
 type Recipe {

@@ -1,12 +1,16 @@
 import { z } from "zod";
 import { logger } from "../../lib/logger";
-import type { Recipe, Resolvers } from "../../types/types";
+import type {
+    QueryRecipeArgs,
+    QueryRecipesArgs,
+    Recipe,
+} from "../../types/types";
 import { user_resolver } from "../user/resolvers";
-import { getRecipeById } from "./model";
+import { getRecipeById, getRecipes } from "./model";
 
 async function recipe(
-    parent: any,
-    args: { id: string },
+    _parent: any,
+    args: QueryRecipeArgs,
     ctx: any,
     info: any
 ): Promise<Recipe | void> {
@@ -28,11 +32,48 @@ async function recipe(
 
 async function recipes(
     _parent: any,
-    _args: any,
+    args: QueryRecipesArgs,
     _ctx: any,
     _info: any
 ): Promise<Array<Recipe> | void> {
-    return [];
+    try {
+        let limit: QueryRecipesArgs["limit"];
+        let offset: QueryRecipesArgs["offset"];
+        if (args.limit) {
+            limit = z.number().min(1).max(100).parse(args.limit);
+        }
+        if (args.offset) {
+            offset = z.number().min(0).parse(args.offset);
+        }
+        if (!args.limit) {
+            limit = 5;
+        }
+        if (!args.offset) {
+            offset = 0;
+        }
+        limit = z.number().parse(limit);
+        offset = z.number().parse(offset);
+        let recipes = await getRecipes({ limit, offset });
+        let authors = await Promise.all(
+            recipes.map((recipe) =>
+                user_resolver.Query.user(
+                    null,
+                    { id: recipe.author_id.toString() },
+                    _ctx,
+                    _info
+                )
+            )
+        );
+        recipes.forEach((recipe, index) => {
+            recipe.author = authors[index];
+            return recipe;
+        });
+
+        logger.debug("%o", recipes);
+        return recipes;
+    } catch (error) {
+        logger.error("%o", error);
+    }
 }
 
 let recipe_resolver = {
