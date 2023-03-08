@@ -55,6 +55,12 @@ export type QueryUserArgs = {
   id: Scalars['ID'];
 };
 
+
+export type QueryUsersArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
 export type Recipe = {
   __typename?: 'Recipe';
   author: User;
@@ -71,6 +77,7 @@ export type Recipe = {
 export type User = {
   __typename?: 'User';
   id: Scalars['ID'];
+  recipes: Array<Maybe<Recipe>>;
   username: Scalars['String'];
 };
 
@@ -180,7 +187,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   recipe?: Resolver<Maybe<ResolversTypes['Recipe']>, ParentType, ContextType, RequireFields<QueryRecipeArgs, 'id'>>;
   recipes?: Resolver<Array<Maybe<ResolversTypes['Recipe']>>, ParentType, ContextType, Partial<QueryRecipesArgs>>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
-  users?: Resolver<Array<Maybe<ResolversTypes['User']>>, ParentType, ContextType>;
+  users?: Resolver<Array<Maybe<ResolversTypes['User']>>, ParentType, ContextType, Partial<QueryUsersArgs>>;
 };
 
 export type RecipeResolvers<ContextType = any, ParentType extends ResolversParentTypes['Recipe'] = ResolversParentTypes['Recipe']> = {
@@ -198,6 +205,7 @@ export type RecipeResolvers<ContextType = any, ParentType extends ResolversParen
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  recipes?: Resolver<Array<Maybe<ResolversTypes['Recipe']>>, ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

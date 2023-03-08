@@ -1,9 +1,10 @@
 extend type Query {
     user(id: ID!): User
-    users: [User]!
+    users(limit: Int, offset: Int): [User]!
 }
 
 type User {
     id: ID!
     username: String!
+    recipes: [Recipe]!
 }

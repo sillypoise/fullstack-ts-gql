@@ -9,8 +9,8 @@ function getRecipes({
     limit = 5,
     offset = 0,
 }: {
-    limit: number;
-    offset: number;
+    limit?: number;
+    offset?: number;
 }) {
     return db.any("SELECT * FROM public.recipe LIMIT $1 OFFSET $2", [
         limit,
@@ -46,4 +46,11 @@ function createRecipe({
     );
 }
 
-export { getRecipeById, getRecipes, createRecipe };
+function getRecipesByUserId(id: string) {
+    return db.oneOrNone(
+        "SELECT title, description, instructions, ingredients, author_id, image_url FROM public.recipe WHERE author_id = $1",
+        [id]
+    );
+}
+
+export { getRecipeById, getRecipes, createRecipe, getRecipesByUserId };

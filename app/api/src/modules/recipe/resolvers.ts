@@ -100,7 +100,6 @@ async function addRecipe(
             ctx,
             info
         );
-        logger.debug("%o", recipe);
 
         return recipe;
     } catch (error) {
