@@ -10,6 +10,8 @@
         "generate:css": "tailwindcss -i styles/tailwind.css -o src/styles/tailwind.css"
     },
     "dependencies": {
+        "@apollo/client": "^3.7.10",
+        "nanoid": "^4.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.8.2"
