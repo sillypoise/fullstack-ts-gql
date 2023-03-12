@@ -30,17 +30,21 @@ export default function Recipe() {
     if (loading) {
         return <p>Loading...</p>;
     }
-
     let recipe = data.recipe;
+
     return (
         <main className="center mlb-xl">
             <article className="stack">
                 {loading ? (
-                    <p>Loading...</p>
+                    <>
+                        <h1 className="text-4">
+                            Hang tight. We're getting your recipe!
+                        </h1>
+                    </>
                 ) : (
                     <RecipePresentation recipe={recipe} />
                 )}
-                <pre>{JSON.stringify(data, null, 4)}</pre>
+                {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
             </article>
         </main>
     );
