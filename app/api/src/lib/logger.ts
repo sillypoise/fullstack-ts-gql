@@ -65,11 +65,20 @@ function dev_logger(): Logger {
 function prod_logger(): Logger {
     return createLogger({
         level: level(),
-        format: combine(timestamp(), errors({ stack: true }), json()),
+        format: combine(
+            colorize({ all: true }),
+            timestamp({ format: `YYYY-MM-DD HH:mm:ss` }),
+            errors({ stack: true }),
+            label({ label: "prod" }),
+            splat(),
+            prettyPrint(),
+            winston_log_format,
+            json()
+        ),
         transports: [
             new transports.Console(),
             new transports.File({
-                filename: "logs/errors.log",
+                filename: "logs/monitoring.log",
             }),
         ],
     });
