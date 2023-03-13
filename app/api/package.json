@@ -4,6 +4,7 @@
     "description": "",
     "main": "dist/server.js",
     "scripts": {
+        "build": "run-s clean build:*",
         "build:prod": "swc src -d dist",
         "dev:swc": "swc src -d dist --watch",
         "dev:codegen": "pnpm generate:codegen --watch",
