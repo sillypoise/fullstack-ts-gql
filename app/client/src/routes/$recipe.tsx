@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 import { nanoid } from "nanoid";
+import { ImageWrapper } from "../components/ImageWrapper";
 
 export default function Recipe() {
     let params = useParams();
@@ -73,6 +74,13 @@ function RecipePresentation({
             <p>{recipe.description}</p>
             <p>By: {recipe.author.username}</p>
             <hr />
+            <ImageWrapper
+                src={recipe.image_url}
+                className="aspect-[1.77] object-cover"
+                // width={400}
+                // height={800}
+                altText="generic recipe image"
+            />
             <h2 className="text-2">Ingredients</h2>
             <ul className="stack [--stack-gap:var(--space-3xs)]">
                 {recipe.ingredients.map((ingredient: string) => (

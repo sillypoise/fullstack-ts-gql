@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from "./App";
 import "../styles/tailwind.css";
-import Recipe from "./routes/recipe";
+import Recipe from "./routes/$recipe";
 
 let router = createBrowserRouter([
     {
