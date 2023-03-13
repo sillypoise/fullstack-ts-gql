@@ -23,7 +23,7 @@ let router = createBrowserRouter([
 ]);
 
 let client = new ApolloClient({
-    uri: "http://localhost:8000/v1/graphql",
+    uri: `${import.meta.env.BASE_URL}v1/graphql`,
     cache: new InMemoryCache(),
 });
 

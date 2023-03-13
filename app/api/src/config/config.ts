@@ -58,6 +58,7 @@ let configSchema = z.object({
     stage: z.enum(stages),
     server: z.object({
         port: z.number(),
+        // baseURL: z.string(),
     }),
     // ci: z{},
     // api: z{},
@@ -84,6 +85,7 @@ export let config = configSchema.parse({
     stage,
     server: {
         port: envToNumber(process.env.PORT, 8000),
+        // baseURL: envToStr(process.env.BASE_URL, "http://localhost:8000"),
     },
     database: {
         postgres: {
