@@ -66,8 +66,12 @@ function prod_logger(): Logger {
     return createLogger({
         level: level(),
         format: combine(timestamp(), errors({ stack: true }), json()),
-        defaultMeta: { service: "user-service" },
-        transports: [new transports.Console()],
+        transports: [
+            new transports.Console(),
+            new transports.File({
+                filename: "logs/errors.log",
+            }),
+        ],
     });
 }
 

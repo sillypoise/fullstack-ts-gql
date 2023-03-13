@@ -60,6 +60,7 @@ function UserPresentation({
     return (
         <>
             <h1 className="text-4">{user.username}</h1>
+            <Link to="/">Home</Link>
             <h2 className="text-2">Recipes</h2>
             {user.recipes.length === 0 ? (
                 <p>No recipes yet!</p>
