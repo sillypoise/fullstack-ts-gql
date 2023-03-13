@@ -13,6 +13,8 @@ async function user(
     let id = z.string().parse(args.id);
     try {
         let user = await getUserById(id);
+        let recipes = await getRecipes({ limit: 100 });
+        user.recipes = recipes.filter((recipe) => recipe.author_id === user.id);
         return user;
     } catch (error) {
         logger.error("%o", error);
