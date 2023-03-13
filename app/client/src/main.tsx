@@ -5,6 +5,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from "./App";
 import "../styles/tailwind.css";
 import Recipe from "./routes/$recipe";
+import User from "./routes/$user";
 
 let router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ let router = createBrowserRouter([
     {
         path: "/recipe/:id",
         element: <Recipe />,
+    },
+    {
+        path: "/user/:id",
+        element: <User />,
     },
 ]);
 

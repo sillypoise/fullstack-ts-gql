@@ -17,6 +17,7 @@ export default function Recipe() {
                 ingredients
                 image_url
                 author {
+                    id
                     username
                 }
             }
@@ -72,7 +73,15 @@ function RecipePresentation({
             <h1 className="text-4">{recipe.title}</h1>
             <Link to="/">Home</Link>
             <p>{recipe.description}</p>
-            <p>By: {recipe.author.username}</p>
+            <p>
+                By:{" "}
+                <span>
+                    <Link to={`/user/${recipe.author.id}`}>
+                        {recipe.author.username}
+                    </Link>
+                </span>
+            </p>
+
             <hr />
             <ImageWrapper
                 src={recipe.image_url}
