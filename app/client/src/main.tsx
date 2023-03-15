@@ -7,6 +7,9 @@ import "../styles/tailwind.css";
 import Recipe from "./routes/$recipe";
 import User from "./routes/$user";
 
+let isDev = import.meta.env.DEV ? true : false;
+let BASE_URL = isDev ? "http://localhost:8000/" : import.meta.env.BASE_URL;
+
 let router = createBrowserRouter([
     {
         path: "/",
@@ -23,7 +26,7 @@ let router = createBrowserRouter([
 ]);
 
 let client = new ApolloClient({
-    uri: `${import.meta.env.BASE_URL}v1/graphql`,
+    uri: `${BASE_URL}v1/graphql`,
     cache: new InMemoryCache(),
 });
 

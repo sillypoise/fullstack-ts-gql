@@ -16,11 +16,6 @@ app.use(
     })
 );
 app.use(express.json());
-app.use(
-    cors({
-        origin: "*",
-    })
-);
 app.use(express.urlencoded({ extended: true }));
 
 // server public content
